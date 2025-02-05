@@ -58,3 +58,29 @@ const Lista: React.FC = () => {
 export default Lista;
 ```
 
+## Importando e exportando componentes
+
+Vamos importar o componente Lista para o App. Perceba que, ao final do código, temos o `export default 'nome do componente'`.
+Com isso, podemos utilizá-lo em outras partes do projeto.
+
+### Passos:
+1. Importar o componente.
+2. Colocar o componente dentro do JSX.
+
+**Obs:** Perceba que o componente se parece com uma tag HTML e sempre começa com letra maiúscula.
+
+```tsx
+import "./App.css";
+import Lista from "./shared/components/Lista/Lista";
+
+function App() {
+  return (
+    <>
+      <Lista />
+    </>
+  );
+}
+
+export default App;
+```
+
