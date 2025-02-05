@@ -179,3 +179,67 @@ export default App;
 
 **Obs:** No componente App, passamos as propriedades para o `PropsButton`. Assim, ao clicar, aparece um alerta com "Olá, mundo". O botão terá um ícone do Facebook e estará habilitado. O uso das props nos permite customizar e reutilizar o componente em vários locais, adaptando-o conforme a necessidade.
 
+### Renderização Condicional
+
+Seus componentes frequentemente precisarão exibir coisas diferentes dependendo de diferentes condições. No React, você pode renderizar condicionalmente JSX usando sintaxe do Typescript, como declarações if, e operadores ? : e &&.
+
+## Exemplo
+
+```tsx
+import React, { useState } from "react";
+
+const Condicional: React.FC = () => {
+  const [soma, setsoma] = useState(0);
+  const [mostrar, setMostrar] = useState(false);
+
+  const Somar = () => {
+    setsoma((prev) => prev + 1);
+  };
+
+  const Visualizar = () => {
+    setMostrar((prev) => !prev);
+  };
+
+  return (
+    <div>
+      <button onClick={Somar}>Somar</button>
+      <p>{soma}</p>
+      <button onClick={Visualizar}>Mostrar</button>
+
+      {mostrar && <p>mostrando </p>}
+
+      {mostrar ? <p>Se mostrar for True </p> : <p>Se mostrar for false</p>}
+    </div>
+  );
+};
+
+export default Condicional;
+```
+
+**Obs:** Perceba que estamos usando o usestate, com ele temos variaveis de estado.
+No React, as variáveis de estado são geralmente usadas para armazenar informações que determinam a aparência ou o comportamento de um componente em determinado momento. Quando o valor de uma variável de estado muda, o React automaticamente atualiza a UI para refletir a nova informação.
+A primeira informação é a variável onde ficará armazenado os dados, e a função setAlgo será utilizada para atualizar essa variável
+
+Dentro do jsx Fizemos a renderização condicional de duas formas:
+
+1.
+
+```tsx
+{
+  mostrar && <p>mostrando </p>;
+}
+```
+
+Assim ocorre o seguinte: se a variável de estado mostrar for True,
+será exibido o paragrafo escrito mostrando
+
+2.
+
+```tsx
+{
+  mostrar ? <p>Se mostrar for True </p> : <p>Se mostrar for false</p>;
+}
+```
+
+Assim ocorre o seguinte: se mostrar for true, aparece o paragrafo escrito se mostrar for true, senão,
+aparece o paragrafo escrito se mostrar for false
