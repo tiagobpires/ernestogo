@@ -84,3 +84,36 @@ function App() {
 export default App;
 ```
 
+## TypeScript no JSX
+
+A sintaxe JSX permite que você escreva tags similares ao HTML dentro de um arquivo TypeScript, mantendo a lógica de renderização e o conteúdo no mesmo local. Às vezes, você pode querer adicionar um pouco de lógica TypeScript ou referenciar uma propriedade dinâmica dentro deste bloco de tags. Nessa situação, você pode usar chaves em seu JSX para abrir uma janela para o TypeScript.
+
+### Exemplo 1
+
+```tsx
+import React from "react";
+import imagem from "../../../assets/Captura_de_Tela.png";
+
+export const Imagem: React.FC = () => {
+  const description = "captura de tela";
+  return (
+    <div>
+      <img src={imagem} alt={description} />
+    </div>
+  );
+};
+```
+
+### Exemplo 2
+
+```tsx
+const Laranjas: React.FC = () => {
+  const quantidadeDeLaranjas = 20;
+  return (
+    <div>
+      <p>A quantidade de laranjas é {quantidadeDeLaranjas}</p>
+    </div>
+  );
+};
+```
+
