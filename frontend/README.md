@@ -243,3 +243,91 @@ será exibido o paragrafo escrito mostrando
 
 Assim ocorre o seguinte: se mostrar for true, aparece o paragrafo escrito se mostrar for true, senão,
 aparece o paragrafo escrito se mostrar for false
+
+## Renderização de listas
+
+É comum a necessidade de se exibir vários componentes semelhantes a partir de uma coleção de dados. Você pode usar os métodos de array Typescript para manipular um array de dados.
+
+### Exemplo
+
+```tsx
+import React from "react";
+
+interface person {
+  nome: string;
+  idade: number;
+}
+
+const RenderList: React.FC = () => {
+  const lista = [
+    "item 11",
+    "item 22",
+    "item 33",
+    "item 44",
+    "item 55",
+    "item 66",
+  ];
+  const personList: person[] = [
+    {
+      nome: "jonas",
+      idade: 20,
+    },
+    {
+      nome: "Ernesto",
+      idade: 20,
+    },
+    {
+      nome: "Tiago",
+      idade: 22,
+    },
+    {
+      nome: "Lucas",
+      idade: 22,
+    },
+  ];
+
+  const filteredPersonList = personList.filter((person) => person.idade === 20);
+
+  return (
+    <div>
+      <ul>
+        {lista.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+      <ul>
+        {personList.map((person, index) => (
+          <>
+            <li key={index}>Nome:{person.nome}</li>
+            <li>Idade:{person.idade}</li>
+          </>
+        ))}
+      </ul>
+      <ul>
+        {filteredPersonList.map((person, index) => (
+          <>
+            <li key={index}>Nome:{person.nome}</li>
+            <li>Idade:{person.idade}</li>
+          </>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default RenderList;
+```
+
+Entendendo o código:
+
+1.Definindo os arrays: Temos dois arrays: um de strings (lista) e outro de objetos (personList). A ideia é transformar esses arrays em listas HTML dinâmicas, onde cada item será representado por um elemento <li>.
+
+2.lista: contém simples strings, como "item 11", "item 22", etc.
+personList: é uma lista de objetos representando pessoas, cada uma com nome e idade.
+Usando o map(): O método map() é utilizado para percorrer os dois arrays e gerar um novo array de elementos JSX (que são componentes React). O map() aplica uma função a cada item do array e retorna um novo array de elementos com base no que você definiu.
+
+No primeiro exemplo, estamos usando o map() para gerar uma lista de <li> com os itens do array lista.
+No segundo exemplo, estamos gerando uma lista de <li> para cada pessoa em personList, exibindo o nome e a idade de cada uma.
+No terceiro exemplo, estamos filtrando a personList para obter apenas as pessoas com idade igual a 20 e, em seguida, renderizando a lista filtrada de maneira similar.
+
+3.A chave (key) para cada item: No React, quando estamos renderizando uma lista de elementos, é importante fornecer uma chave única para cada item da lista, para que o React possa identificar qual item foi alterado, removido ou adicionado. Nesse caso, estamos utilizando o index do array como a chave, embora seja mais recomendado usar um identificador único (por exemplo, um id de cada item) quando possível, para garantir a eficiência na renderização.
