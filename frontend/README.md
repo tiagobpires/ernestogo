@@ -117,3 +117,63 @@ const Laranjas: React.FC = () => {
 };
 ```
 
+## Passando Props a um Componente
+
+Props são as informações que você passa usando uma tag JSX. Por exemplo, className, src, alt, width e height são algumas das props que você pode passar a uma `<img>`.
+
+Componentes do React usam props para se comunicar um com o outro. Todo componente pai pode passar alguma informação aos seus filhos por meio das props. Props podem lembrar atributos HTML, mas você pode passar qualquer valor JavaScript por meio delas, incluindo objetos, arrays e funções.
+
+### Criando componente com Props
+
+```tsx
+import React from "react";
+
+interface PropsButton {
+  onClick: () => void;
+  children: React.ReactNode;
+  disabled?: boolean;
+}
+
+export const PropsButton: React.FC<PropsButton> = ({
+  onClick,
+  children,
+  disabled,
+}) => {
+  return (
+    <div>
+      <button disabled={disabled} onClick={onClick}>
+        {children}
+      </button>
+    </div>
+  );
+};
+```
+
+**Obs:** No React com TypeScript, devemos criar uma interface com as propriedades que queremos. Assim, passamos essas propriedades para o componente. Com a tipagem, teremos autocomplete e indicação de erro caso falte alguma propriedade. Para tornar uma propriedade opcional, basta adicionar `?` ao final do nome da propriedade antes dos `:`.
+
+### Passando as Props para o componente
+
+```tsx
+import { FaFacebook } from "react-icons/fa";
+import "./App.css";
+import { PropsButton } from "./shared/components";
+
+function App() {
+  const handleClick = () => {
+    window.alert("Olá, mundo");
+  };
+
+  return (
+    <>
+      <PropsButton onClick={handleClick} disabled={false}>
+        <FaFacebook /> Facebook
+      </PropsButton>
+    </>
+  );
+}
+
+export default App;
+```
+
+**Obs:** No componente App, passamos as propriedades para o `PropsButton`. Assim, ao clicar, aparece um alerta com "Olá, mundo". O botão terá um ícone do Facebook e estará habilitado. O uso das props nos permite customizar e reutilizar o componente em vários locais, adaptando-o conforme a necessidade.
+
