@@ -9,20 +9,20 @@
 /my-react-app
 │── /public
 │── /src
-│ ├── /assets # Imagens, ícones, estilos globais, fontes etc.
-│ ├── /pages # Páginas principais da aplicação
-│ ├── /routes # Configuração das rotas da aplicação
-│ ├── /shared # Recursos compartilhados
-│ │ ├── /components # Componentes reutilizáveis
-│ │ ├── /contexts # Contextos do React (React Context API)
-│ │ ├── /hooks # Hooks personalizados
-│ │ ├── /services # Serviços de API, requisições HTTP etc.
-│ ├── App.tsx # Componente principal da aplicação
-│ ├── main.tsx # Ponto de entrada do React
-│ ├── vite.config.ts # Arquivo de configuração do Vite (caso use Vite)
+│   ├── /assets       # Imagens, ícones, estilos globais, fontes etc.
+│   ├── /pages        # Páginas principais da aplicação
+│   ├── /routes       # Configuração das rotas da aplicação
+│   ├── /shared       # Recursos compartilhados
+│   │   ├── /components # Componentes reutilizáveis
+│   │   ├── /contexts   # Contextos do React (React Context API)
+│   │   ├── /hooks      # Hooks personalizados
+│   │   ├── /services   # Serviços de API, requisições HTTP etc.
+│   ├── App.tsx        # Componente principal da aplicação
+│   ├── main.tsx       # Ponto de entrada do React
+│   ├── vite.config.ts # Arquivo de configuração do Vite (caso use Vite)
 │── package.json
-│── tsconfig.json # Configuração do TypeScript (caso use TypeScript)
-│── .eslintrc.js # Configuração do ESLint (se necessário)
+│── tsconfig.json      # Configuração do TypeScript (caso use TypeScript)
+│── .eslintrc.js       # Configuração do ESLint (se necessário)
 │── .gitignore
 
 # Meu primeiro componente
