@@ -175,5 +175,7 @@ function App() {
 export default App;
 ```
 
+**Obs:** O children permite que você insira qualquer tipo de conteúdo dentro do componente, seja texto, ícones, ou outros componentes React.
+
 **Obs:** No componente App, passamos as propriedades para o `PropsButton`. Assim, ao clicar, aparece um alerta com "Olá, mundo". O botão terá um ícone do Facebook e estará habilitado. O uso das props nos permite customizar e reutilizar o componente em vários locais, adaptando-o conforme a necessidade.
 
