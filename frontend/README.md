@@ -331,3 +331,138 @@ No segundo exemplo, estamos gerando uma lista de li para cada pessoa em personLi
 No terceiro exemplo, estamos filtrando a personList para obter apenas as pessoas com idade igual a 20 e, em seguida, renderizando a lista filtrada de maneira similar.
 
 3.A chave (key) para cada item: No React, quando estamos renderizando uma lista de elementos, é importante fornecer uma chave única para cada item da lista, para que o React possa identificar qual item foi alterado, removido ou adicionado. Nesse caso, estamos utilizando o index do array como a chave, embora seja mais recomendado usar um identificador único (por exemplo, um id de cada item) quando possível, para garantir a eficiência na renderização.
+
+## Estilização
+
+1: CSS Modules
+
+podemos criar um arquivo separado com o css e utilizar no componente desejado ou escrever o código
+css no próprio componente(é mais recomendando usar em arquivos separados)
+
+No React o CSS Modules garante que os estilos sejam aplicados apenas ao componente específico, evitando conflitos globai
+
+passo 1) criar um arquivo style.module.css (o .module.css é obrigatório)
+
+passo 2) importar no componente que deseja utilizar o estilo
+
+arquivo css
+
+```css
+.button {
+  background-color: aqua;
+  color: black;
+  width: 10rem;
+}
+
+.button:hover {
+  background-color: darkblue;
+}
+```
+
+componente
+
+```tsx
+import React from "react";
+import styles from "./style.module.css";
+
+interface PropsButton {
+  onClick: () => void;
+  children: React.ReactNode;
+  disabled: boolean;
+}
+
+export const PropsButton: React.FC<PropsButton> = ({
+  onClick,
+  children,
+  disabled,
+}) => {
+  return (
+    <div>
+      <button className={styles.button} disabled={disabled} onClick={onClick}>
+        {children}
+      </button>
+    </div>
+  );
+};
+```
+
+Perceba que no react usamos classname ao invés de class, além disso, importamos o css como um objeto
+e utilizamos as classes que foram criadas no arquivo, no caso, a classe button.
+
+2: Biblioteca de componentes
+
+No desenvolvimento com React, bibliotecas de componentes são coleções de componentes reutilizáveis e estilizados, prontos para serem usados sem a necessidade de criar cada elemento do zero. Essas bibliotecas oferecem consistência visual, melhoram a produtividade e geralmente seguem padrões de design populares.
+
+ex: Material ui
+
+1. Instale o Material UI com:
+
+   ```sh
+   npm install @mui/material @emotion/react @emotion/styled
+   ```
+
+2. Instale os icones do Material UI com:
+
+   ```sh
+   npm install @mui/icons-material
+   ```
+
+Menu Lateral com Material UI:
+
+```tsx
+import React, { useState } from "react";
+import {
+  Drawer,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  IconButton,
+} from "@mui/material";
+import { Menu, Home, Info, Settings } from "@mui/icons-material";
+
+const Sidebar: React.FC = () => {
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = (isOpen: boolean) => () => {
+    setOpen(isOpen);
+  };
+
+  return (
+    <>
+      <IconButton onClick={toggleDrawer(true)}>
+        <Menu />
+      </IconButton>
+      <Drawer
+        anchor="right"
+        variant="permanent"
+        open={open}
+        onClose={toggleDrawer(false)}
+      >
+        <List>
+          <ListItemButton onClick={toggleDrawer(false)}>
+            <ListItemIcon>
+              <Home />
+            </ListItemIcon>
+            <ListItemText primary="Início" />
+          </ListItemButton>
+          <ListItemButton onClick={toggleDrawer(false)}>
+            <ListItemIcon>
+              <Info />
+            </ListItemIcon>
+            <ListItemText primary="Sobre" />
+          </ListItemButton>
+          <ListItemButton onClick={toggleDrawer(false)}>
+            <ListItemIcon>
+              <Settings />
+            </ListItemIcon>
+            <ListItemText primary="Configurações" />
+          </ListItemButton>
+        </List>
+      </Drawer>
+    </>
+  );
+};
+
+export default Sidebar;
+```
